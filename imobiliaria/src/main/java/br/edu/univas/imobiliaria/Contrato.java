@@ -4,19 +4,31 @@ import java.util.Date;
 
 @Entity
 public class Contrato {
-@Id
+	@Id
     private int cod;
+	@Column
     private int codCliente;
+	@Column
     private int codImovel;
+	@Column
     private Date dataContrato;
+	@Column
     private String formaPagamento;
+	@Column
     private String tipo;
+	@Column
     private Date dataVenda;
+	@Column
     private float valorVenda;
+	@Column
     private Date dataEntrada;
+	@Column
     private Date dataSaida;
+	@Column
     private float valorMensalidade;
 
+	public Contrato() {}
+	
     public Contrato(int cod, int codCliente, int codImovel, Date dataContrato, String formaPagamento, 
                     String tipo, Date dataVenda, float valorVenda, Date dataEntrada, 
                     Date dataSaida, float valorMensalidade){            

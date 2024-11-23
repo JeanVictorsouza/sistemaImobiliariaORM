@@ -6,12 +6,20 @@ import javax.persistence.*;
 public class Corretor {
 	@Id
 	int cod;
+	@Column
 	String cpf;
+	@Column
 	String nome;
-	Long telefone;
+	@Column
+	long telefone;
 	
-	public Corretor(int cod, String cpf, String nome, Long telefone) {
-		// TODO Auto-generated constructor stub
+	public Corretor() {}
+	
+	public Corretor(int cod, String cpf, String nome, long telefone) {
+		this.cod = cod;
+		this.cpf = cpf;
+		this.nome = nome;
+		this.telefone = telefone;
 	}
 
 	public int getCod() {
@@ -38,14 +46,11 @@ public class Corretor {
 		this.nome = nome;
 	}
 
-	public Long getTelefone() {
+	public long getTelefone() {
 		return telefone;
 	}
 
-	public void setTelefone(Long telefone) {
+	public void setTelefone(long telefone) {
 		this.telefone = telefone;
 	}
-
-	
 }
-

@@ -4,19 +4,33 @@ import javax.persistence.*;
 
 @Entity
 public class Imovel {
-    private int cod;
+    @Id
+	private int cod;
+    @Column
     private int codProprietario;
+    @Column
     private int codCorretor;
+    @Column
     private String rua;
+    @Column
     private String bairro;
+    @Column
     private String numero;
+    @Column
     private String complemento;
+    @Column
     private String cep;
+    @Column
     private String cidade;
+    @Column
     private String estado;
+    @Column
     private String tipo;
+    @Column
     private int metrosQuadrados;
 
+    public Imovel() {}
+    
     // Constructor
     public Imovel(int cod, int codProprietario, int codCorretor, String rua, String bairro, String numero,
                   String complemento, String cep, String cidade, String estado, String tipo, int metrosQuadrados) {

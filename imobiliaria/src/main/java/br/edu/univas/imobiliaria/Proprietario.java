@@ -5,12 +5,19 @@ import javax.persistence.*;
 public class Proprietario {
 	@Id
     private int cod;
+	@Column
     private String nome;
+	@Column
     private long telefone;
+	@Column
     private String tipo;
+	@Column
     private String cpf;
+	@Column
     private String cnpj;
 
+	public Proprietario() {}
+	
     // Constructor
     public Proprietario(int cod, String nome, long telefone, String tipo, String cpf, String cnpj) {
         this.cod = cod;

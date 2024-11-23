@@ -6,17 +6,27 @@ import javax.persistence.*;
 public class Cliente {
 	@Id
 	private int cod;
+	@Column
 	private String nome;
+	@Column
 	private String cnpj;
+	@Column
 	private String cpf;
+	@Column
 	private String tipo;
-	private String telefone;
+	@Column
+	private long telefone;
 	
+	public Cliente() {}
 	
-		// Construtor
-	public Cliente(int cod2, String nomeCliente, long numTelefone, String tipoCliente, String numCPF, String numCNPJ) {
-		
-		//getters e setters 
+	// Construtor
+	public Cliente(int cod, String nome, long telefone, String tipo, String cpf, String cnpj) {
+		this.cod = cod;
+		this.nome = nome;
+		this.cnpj = cnpj;
+		this.cpf = cpf;
+		this.tipo = tipo;
+		this.telefone = telefone;		 
 	}
 	
 	public int getCod() {
@@ -49,10 +59,10 @@ public class Cliente {
 	public void setTipo(String tipo) {
 		this.tipo = tipo;
 	}
-	public String getTelefone() {
+	public long getTelefone() {
 		return telefone;
 	}
-	public void setTelefone(String telefone) {
+	public void setTelefone(long telefone) {
 		this.telefone = telefone;
 	}	
 }
