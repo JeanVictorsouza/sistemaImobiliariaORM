@@ -3,50 +3,45 @@ package br.edu.univas.imobiliaria.DbManager;
 import br.edu.univas.imobiliaria.*;
 import javax.persistence.*;
 
-public class DbManagerCliente {
+public class DbManagerImovel {
 	private static String _persistenceName = "imobiliaria-jpa";
 	
-	private static Cliente _find(int id) {
+	public static Imovel find(int id) {
 		EntityManagerFactory emf = Persistence.createEntityManagerFactory(_persistenceName);
 		EntityManager em = emf.createEntityManager();
 		
 		em.getTransaction().begin();
 		
-		Cliente c = em.find(Cliente.class, id);
+		Imovel i = em.find(Imovel.class, id);
 		
 		em.close();
 		emf.close();
 		
-		return c;
+		return i;
 	}
 	
-	public static void persist(Cliente cliente) {
+	public static void persist(Imovel imovel) {
 		EntityManagerFactory emf = Persistence.createEntityManagerFactory(_persistenceName);
 		EntityManager em = emf.createEntityManager();
 		
 		em.getTransaction().begin();
 		
-		em.persist(cliente);
+		em.persist(imovel);
 		
 		em.getTransaction().commit();
 		
 		em.close();
 		emf.close();
 	}
-	
-	public static void find(int id) {
-		Cliente c = _find(id);
-		System.out.println(c.toString());
-	}
-	
+
 	public static void remove(int id) {
 		EntityManagerFactory emf = Persistence.createEntityManagerFactory(_persistenceName);
 		EntityManager em = emf.createEntityManager();
 		
 		em.getTransaction().begin();
 		
-		Cliente c = em.find(Cliente.class, id);
-		em.remove(c);
+		Imovel i = em.find(Imovel.class, id);
+		em.remove(i);
 		
 		em.getTransaction().commit();
 		
@@ -54,21 +49,27 @@ public class DbManagerCliente {
 		emf.close();
 	}
 	
-	public static void merge(Cliente clienteNovo, int id) {
+	public static void merge(Imovel imovelNovo, int id) {
 		EntityManagerFactory emf = Persistence.createEntityManagerFactory(_persistenceName);
 		EntityManager em = emf.createEntityManager();
 		
 		em.getTransaction().begin();
 		
-		Cliente cOld = em.find(Cliente.class, id);
+		Imovel iOld = em.find(Imovel.class, id);
 		
-		cOld.setNome(clienteNovo.getNome());
-		cOld.setTelefone(clienteNovo.getTelefone());
-		cOld.setTipo(clienteNovo.getTipo());
-		cOld.setCpf(clienteNovo.getCpf());
-		cOld.setCnpj(clienteNovo.getCnpj());
+		iOld.setCodProprietario(imovelNovo.getCodProprietario());
+		iOld.setCodCorretor(imovelNovo.getCodCorretor());
+		iOld.setRua(imovelNovo.getRua());
+		iOld.setBairro(imovelNovo.getBairro());
+		iOld.setNumero(imovelNovo.getNumero());
+		iOld.setComplemento(imovelNovo.getComplemento());
+		iOld.setCep(imovelNovo.getCep());
+		iOld.setCidade(imovelNovo.getCidade());
+		iOld.setEstado(imovelNovo.getEstado());
+		iOld.setTipo(imovelNovo.getTipo());
+		iOld.setMetrosQuadrados(imovelNovo.getMetrosQuadrados());
 		
-		em.merge(cOld);
+		em.merge(iOld);
 		
 		em.getTransaction().commit();
 		

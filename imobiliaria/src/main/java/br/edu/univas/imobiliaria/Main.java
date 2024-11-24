@@ -248,32 +248,40 @@ public class Main {
         int cod = 0;
         
         switch(opcao){
-        case 1:
-        System.out.print("Digite o código que deseja consultar (Digite -1 caso queira consultar todos os registros do arquivo): ");
-        cod = scanner.nextInt();
-        scanner.nextLine();
+	        case 1:
+		        System.out.print("Digite o código que deseja consultar: ");
+		        cod = scanner.nextInt();
+		        scanner.nextLine();
+		        
+		        System.out.println(DbManagerImovel.find(cod).toString());
 
-        break;
-        case 2:
-        Imovel imovel = UserInputHandlerImovel.userInputHandlerImovel(scanner, 0, 0);
+		        break;
+	        case 2:
+	        	Imovel imovel = UserInputHandlerImovel.userInputHandlerImovel(scanner, 0, 0);
        
-        break;
-        case 3:
-        System.out.print("Digite o código que deseja deletar (Digite -1 caso queria deletar todos os registros do arquivo): ");
-        cod = scanner.nextInt();
-        scanner.nextLine();
-        
-        break;
-        case 4:
-        System.out.print("Digite o código que deseja atualizar: ");
-        cod = scanner.nextInt();
-        scanner.nextLine();
-        imovel = UserInputHandlerImovel.userInputHandlerImovel(scanner, 1, cod);
-       
-        break;
-        default:
-        System.out.println("Opção inválida");
-        break;
+	        	DbManagerImovel.persist(imovel);
+	        	
+	        	break;
+	        case 3:
+	        	System.out.print("Digite o código que deseja deletar: ");
+	        	cod = scanner.nextInt();
+	        	scanner.nextLine();
+	        
+	        	DbManagerImovel.remove(cod);
+	        	
+	        	break;
+	        case 4:
+	        	System.out.print("Digite o código que deseja atualizar: ");
+	        	cod = scanner.nextInt();
+	        	scanner.nextLine();
+	        	imovel = UserInputHandlerImovel.userInputHandlerImovel(scanner, 1, cod);
+	       
+	        	DbManagerImovel.merge(imovel, cod);
+	        	
+	        	break;
+	        default:
+	        	System.out.println("Opção inválida");
+	        	break;
         }
     }
 }
