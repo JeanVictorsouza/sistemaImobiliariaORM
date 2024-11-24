@@ -1,20 +1,19 @@
 package br.edu.univas.imobiliaria.userInputHandler;
 
-import java.util.InputMismatchException; 
-import br.edu.univas.imobiliaria.Cliente;
-
-import java.util.Scanner;
+import br.edu.univas.imobiliaria.*;
+import br.edu.univas.imobiliaria.DbManager.*;
+import java.util.*;
 
 public class UserInputHandlerCliente {
-    public static Cliente userInputHandlerCliente(Scanner scanner, int type, int cod) {
-        System.out.println("Código do Cliente:");
-        if (type == 1) {
+    public static Cliente userInputHandlerCliente(Scanner scanner, int type, int cod) {    	
+    	if (type == 1) {
             // Atualização
             System.out.println("Código atual: " + cod);
         } else {
+            System.out.println("Código do Cliente:");
             cod = scanner.nextInt();
+            scanner.nextLine(); // Limpa o buffer
         }
-        scanner.nextLine(); // Limpa o buffer
 
         System.out.println("Nome do cliente:");
         String nomeCliente = scanner.nextLine();
@@ -41,12 +40,5 @@ public class UserInputHandlerCliente {
         }
 
         return new Cliente(cod, nomeCliente, numTelefone, tipoCliente, numCPF, numCNPJ);
-    }
-
-    public static void userInputHandlerDelete(Scanner scanner) {
-        System.out.print("Digite o código do cliente que deseja deletar: ");
-        int codCliente = scanner.nextInt();
-        scanner.nextLine(); // Limpa o buffer
-        // Retorna o código para o menuCliente
     }
 }

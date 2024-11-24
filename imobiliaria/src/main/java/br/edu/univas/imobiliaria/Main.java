@@ -1,7 +1,9 @@
 package br.edu.univas.imobiliaria;
+
 import java.util.Scanner;
 
 import br.edu.univas.imobiliaria.userInputHandler.*;
+import br.edu.univas.imobiliaria.DbManager.*;
 
 
 public class Main {
@@ -49,13 +51,17 @@ public class Main {
         }
         scanner.close();
     }
-
-    private static void menuCliente(Scanner scanner) {
-        System.out.println("Qual ação deseja realizar: ");
+    
+    private static void _printOptions() {
+    	System.out.println("Qual ação deseja realizar: ");
         System.out.println("1 - Leitura");
         System.out.println("2 - Inserção");
         System.out.println("3 - Deletar");
         System.out.println("4 - Atualizar");
+    }
+
+    private static void menuCliente(Scanner scanner) {
+        _printOptions();
 
         int opcao = scanner.nextInt();
         scanner.nextLine(); // Limpa o buffer
@@ -64,20 +70,27 @@ public class Main {
 
         switch (opcao) {
             case 1:
-                System.out.print("Digite o código que deseja consultar (Digite -1 caso queira consultar todos os registros do arquivo): ");
+                System.out.print("Digite o código que deseja consultar: ");
                 cod = scanner.nextInt();
                 scanner.nextLine();
+                
+                DbManagerCliente.find(cod);
+                
                 break;
                 
             case 2:
                 Cliente cliente = UserInputHandlerCliente.userInputHandlerCliente(scanner, 0, 0);
                 
+                DbManagerCliente.persist(cliente);
+                
                 break;
             case 3:
-                System.out.print("Digite o código que deseja deletar (Digite -1 caso queira deletar todos os registros do arquivo): ");
+                System.out.print("Digite o código que deseja deletar");
                 cod = scanner.nextInt();
                 scanner.nextLine();
 
+                DbManagerCliente.remove(cod);
+                
                 break;
             case 4:
                 System.out.print("Digite o código que deseja atualizar: ");
@@ -86,6 +99,8 @@ public class Main {
 
                 cliente = UserInputHandlerCliente.userInputHandlerCliente(scanner, 1, cod);
                 
+                DbManagerCliente.merge(cliente, cod);
+                
                 break;
             default:
                 System.out.println("Opção inválida");
@@ -93,12 +108,8 @@ public class Main {
         }
     }
 
-        private static void menuContrato(Scanner scanner) {
-        System.out.println("Qual ação deseja realizar: ");
-        System.out.println("1 - Leitura");
-        System.out.println("2 - Inserção");
-        System.out.println("3 - Deletar");
-        System.out.println("4 - Atualizar");
+    private static void menuContrato(Scanner scanner) {
+        _printOptions();
 
         int opcao = scanner.nextInt();
         scanner.nextLine();
@@ -135,11 +146,7 @@ public class Main {
     }
 
     private static void menuProprietario(Scanner scanner) {
-        System.out.println("Qual ação deseja realizar: ");
-        System.out.println("1 - Leitura");
-        System.out.println("2 - Inserção");
-        System.out.println("3 - Deletar");
-        System.out.println("4 - Atualizar");
+        _printOptions();
 
         int opcao = scanner.nextInt();
         scanner.nextLine();
@@ -179,11 +186,7 @@ public class Main {
     }
 
     private static void menuCorretor(Scanner scanner) {
-        System.out.println("Qual ação deseja realizar: ");
-        System.out.println("1 - Leitura");
-        System.out.println("2 - Inserção");
-        System.out.println("3 - Deletar");
-        System.out.println("4 - Atualizar");
+        _printOptions();
 
         int opcao = scanner.nextInt();
         scanner.nextLine();
@@ -192,20 +195,26 @@ public class Main {
 
         switch(opcao){
             case 1:
-                System.out.print("Digite o código que deseja consultar (Digite -1 caso queira consultar todos os registros do arquivo): ");
+                System.out.print("Digite o código que deseja consultar: ");
                 cod = scanner.nextInt();
                 scanner.nextLine();
+                
+                System.out.println(DbManagerCorretor.find(cod).toString());
                 
                 break;
             case 2:
                 Corretor corretor = UserInputHandlerCorretor.userInputHandlerCorretor(scanner, 0, 0);
 
+                DbManagerCorretor.persist(corretor);
+                
                 break;
             case 3:
-                System.out.print("Digite o código que deseja deletar (Digite -1 caso queria deletar todos os registros do arquivo): ");
+                System.out.print("Digite o código que deseja deletar: ");
                 cod = scanner.nextInt();
                 scanner.nextLine();
 
+                DbManagerCorretor.remove(cod);
+                
                 break;
             case 4:
                 System.out.print("Digite o código que deseja atualizar: ");
@@ -214,6 +223,8 @@ public class Main {
 
                 corretor = UserInputHandlerCorretor.userInputHandlerCorretor(scanner, 1, cod);
                
+                DbManagerCorretor.merge(corretor, cod);
+                
                 break;
             default:
                 System.out.println("Opção inválida");
@@ -222,12 +233,8 @@ public class Main {
     }
 
     private static void menuImovel(Scanner scanner) {
-        System.out.println("Qual ação deseja realizar: ");
-        System.out.println("1 - Leitura");
-        System.out.println("2 - Inserção");
-        System.out.println("3 - Deletar");
-        System.out.println("4 - Atualizar");
-        
+        _printOptions();
+    	
         int opcao = scanner.nextInt();
         scanner.nextLine();
         
@@ -261,5 +268,5 @@ public class Main {
         System.out.println("Opção inválida");
         break;
         }
-        }
+    }
 }

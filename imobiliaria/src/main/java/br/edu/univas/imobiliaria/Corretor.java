@@ -53,4 +53,9 @@ public class Corretor {
 	public void setTelefone(long telefone) {
 		this.telefone = telefone;
 	}
+	
+	@Override
+	public String toString() {
+		return this.cod + " | " + this.nome + " | " + this.cpf;
+	}
 }

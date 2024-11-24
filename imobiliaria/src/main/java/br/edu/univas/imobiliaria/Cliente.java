@@ -64,5 +64,12 @@ public class Cliente {
 	}
 	public void setTelefone(long telefone) {
 		this.telefone = telefone;
-	}	
+	}
+	
+	@Override
+	public String toString() {
+		String codNome = this.cod + " | " + this.nome + " | ";
+		String identificacao = this.cpf.equals("") ? this.cnpj: this.cpf;
+		return codNome + identificacao;
+	}
 }
