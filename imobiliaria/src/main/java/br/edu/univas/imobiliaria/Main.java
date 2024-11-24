@@ -155,19 +155,25 @@ public class Main {
 
         switch(opcao){
             case 1:
-                System.out.print("Digite o código que deseja consultar (Digite -1 caso queira consultar todos os registros do arquivo): ");
+                System.out.print("Digite o código que deseja consultar: ");
                 cod = scanner.nextInt();
                 scanner.nextLine();
+                
+                System.out.println(DbManagerProprietario.find(cod).toString());
 
                 break;
             case 2:
                 Proprietario proprietario = UserInputHandlerProprietario.userInputHandlerProprietario(scanner, 0, 0);
+                
+                DbManagerProprietario.persist(proprietario);
               
                 break;
             case 3:
-                System.out.print("Digite o código que deseja deletar (Digite -1 caso queria deletar todos os registros do arquivo): ");
+                System.out.print("Digite o código que deseja deletar: ");
                 cod = scanner.nextInt();
                 scanner.nextLine();
+                
+                DbManagerProprietario.remove(cod);
 
                 break;
             case 4:
@@ -176,13 +182,14 @@ public class Main {
                 scanner.nextLine();
 
                 proprietario = UserInputHandlerProprietario.userInputHandlerProprietario(scanner, 1, cod);
+                
+                DbManagerProprietario.merge(proprietario, cod);
                
                 break;
             default:
                 System.out.println("Opção inválida");
                 break;
         }
-
     }
 
     private static void menuCorretor(Scanner scanner) {

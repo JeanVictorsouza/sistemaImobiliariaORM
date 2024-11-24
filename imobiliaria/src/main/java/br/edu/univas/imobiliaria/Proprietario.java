@@ -76,4 +76,11 @@ public class Proprietario {
     public void setCnpj(String cnpj) {
         this.cnpj = cnpj;
     }
+    
+    @Override
+	public String toString() {
+		String codNome = this.cod + " | " + this.nome + " | ";
+		String identificacao = this.cpf.equals("") ? this.cnpj: this.cpf;
+		return codNome + identificacao;
+	}
 }
