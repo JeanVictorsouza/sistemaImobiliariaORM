@@ -118,26 +118,34 @@ public class Main {
 
         switch(opcao){
             case 1:
-                System.out.print("Digite o código que deseja consultar (Digite -1 caso queira consultar todos os registros do arquivo): ");
-                cod = scanner.nextInt();
+            	System.out.print("Digite o código que deseja consultar: ");
+            	cod = scanner.nextInt();
                 scanner.nextLine();
-
+                
+                DbManagerContrato.find(cod);
                 break;
             case 2:
                 Contrato contrato = UserInputHandlerContrato.userInputHandlerContrato(scanner, 0, 0);
+                
+                DbManagerContrato.persist(contrato);
+                
                 break;
             case 3:
-                System.out.print("Digite o código que deseja deletar (Digite -1 caso queria deletar todos os registros do arquivo): ");
+            	System.out.print("Digite o código que deseja deletar");
                 cod = scanner.nextInt();
                 scanner.nextLine();
-
+                
+                DbManagerContrato.remove(cod);
+                
                 break;
             case 4:
-                System.out.print("Digite o código que deseja atualizar: ");
+            	System.out.print("Digite o código que deseja atualizar: ");
                 cod = scanner.nextInt();
                 scanner.nextLine();
 
                 contrato = UserInputHandlerContrato.userInputHandlerContrato(scanner, 1, cod);
+                DbManagerContrato.merge(contrato, cod);
+                
                 break;
             default:
                 System.out.println("Opção inválida");
